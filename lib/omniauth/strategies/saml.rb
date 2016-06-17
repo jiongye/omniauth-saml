@@ -77,10 +77,6 @@ module OmniAuth
         @name_id = response.name_id
         @attributes = response.attributes
 
-        if @name_id.nil? || @name_id.empty?
-          raise OmniAuth::Strategies::SAML::ValidationError.new("SAML response missing 'name_id'")
-        end
-
         super
       rescue OmniAuth::Strategies::SAML::ValidationError
         fail!(:invalid_ticket, $!)
