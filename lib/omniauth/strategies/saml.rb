@@ -76,6 +76,7 @@ module OmniAuth
 
         @name_id = response.name_id
         @attributes = response.attributes
+        @response_object = response
 
         super
       rescue OmniAuth::Strategies::SAML::ValidationError
@@ -131,7 +132,7 @@ module OmniAuth
         Hash[found_attributes]
       end
 
-      extra { { :raw_info => @attributes } }
+      extra { { :raw_info => @attributes, :response_object =>  @response_object } }
 
       def find_attribute_by(keys)
         keys.each do |key|
